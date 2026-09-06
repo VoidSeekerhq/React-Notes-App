@@ -7,7 +7,7 @@ import Edit from './assets/Components/Edit/Edit'
 
 function App() {
 
-  const [selectedId, setSelectedId] = useState("")
+  const [selectedId, setSelectedId] = useState(null)
   // const [isEditing, setIsEditing] = useState(false)
   const [title, setTitle] = useState("")
   const [content, setContent] = useState("")
@@ -75,12 +75,12 @@ function App() {
         updatedAt: Date.now()
       }
 
-      if(newNote.title === "" || newNote.content === "") return alert("title or content cannot be empty")
+      if (newNote.title === "" || newNote.content === "") return alert("title or content cannot be empty")
 
       setNotes([...notes, newNote])
     } else {
       setNotes(
-        
+
         notes.map(item =>
           item.id === selectedId
             ? {
@@ -154,130 +154,130 @@ function App() {
 
     } else {
       if (confirm("are you sure you want to permanently delete this note?") === true) {
-      setNotes(
-        notes.filter(
-          item => item.id !== id
+        setNotes(
+          notes.filter(
+            item => item.id !== id
+          )
         )
-      )
-    } else return
+      } else return
 
-  }
+    }
 
-  setSelectedId(null)
-  setTitle("")
-  setContent("")
-  setMode("none")
-  setOpenMenuId(null)
-}
-
-const handleRestore = (id) => {
-  const selectedNote = notes.find(
-    item => item.id === id
-  )
-
-  if (!selectedNote) return
-
-  if (selectedNote.deleted) {
-    setNotes(
-      notes.map(item =>
-        item.id === id
-          ? {
-            ...item,
-            deleted: false
-          }
-          : item
-      )
-    )
-  }
-
-  setSelectedId(null)
-  setTitle("")
-  setContent("")
-  setMode("none")
-  setOpenMenuId(null)
-}
-
-const handleSearch = (e) => {
-  setSearch(e.target.value)
-}
-
-const handleMenu = (id) => {
-  setOpenMenuId(prev =>
-    prev === id
-      ? null
-      : id
-  )
-}
-
-useEffect(() => {
-
-  const closeMenu = () => {
+    setSelectedId(null)
+    setTitle("")
+    setContent("")
+    setMode("none")
     setOpenMenuId(null)
   }
 
-  window.addEventListener(
-    "click",
-    closeMenu
-  )
+  const handleRestore = (id) => {
+    const selectedNote = notes.find(
+      item => item.id === id
+    )
 
-  return () =>
-    window.removeEventListener(
+    if (!selectedNote) return
+
+    if (selectedNote.deleted) {
+      setNotes(
+        notes.map(item =>
+          item.id === id
+            ? {
+              ...item,
+              deleted: false
+            }
+            : item
+        )
+      )
+    }
+
+    setSelectedId(null)
+    setTitle("")
+    setContent("")
+    setMode("none")
+    setOpenMenuId(null)
+  }
+
+  const handleSearch = (e) => {
+    setSearch(e.target.value)
+  }
+
+  const handleMenu = (id) => {
+    setOpenMenuId(prev =>
+      prev === id
+        ? null
+        : id
+    )
+  }
+
+  useEffect(() => {
+
+    const closeMenu = () => {
+      setOpenMenuId(null)
+    }
+
+    window.addEventListener(
       "click",
       closeMenu
     )
 
-}, [])
+    return () =>
+      window.removeEventListener(
+        "click",
+        closeMenu
+      )
+
+  }, [])
 
 
 
-return (
-  <div className={`app ${theme}`}>
-    <Sidebar
-      handleAdd={handleAdd}
-      section={section}
-      setSection={setSection}
-      theme={theme}
-      handleTheme={handleTheme}
-    />
+  return (
+    <div className={`app ${theme}`}>
+      <Sidebar
+        handleAdd={handleAdd}
+        section={section}
+        setSection={setSection}
+        theme={theme}
+        handleTheme={handleTheme}
+      />
 
-    <Center
-      notes={notes}
-      search={search}
-      handleSearch={handleSearch}
-      handlePreview={handlePreview}
-      section={section}
-      selectedId={selectedId}
-      handleMenu={handleMenu}
-      openMenuId={openMenuId}
-      handleEdit={handleEdit}
-      handleDelete={handleDelete}
-      handleRestore={handleRestore}
-    />
+      <Center
+        notes={notes}
+        search={search}
+        handleSearch={handleSearch}
+        handlePreview={handlePreview}
+        section={section}
+        selectedId={selectedId}
+        handleMenu={handleMenu}
+        openMenuId={openMenuId}
+        handleEdit={handleEdit}
+        handleDelete={handleDelete}
+        handleRestore={handleRestore}
+      />
 
-    <Preview
-      mode={mode}
-      note={selectedNote}
-      title={title}
-      content={content}
-      handleCancel={handleCancel}
-      handleEdit={handleEdit}
-      handleDelete={handleDelete}
-      handleRestore={handleRestore}
-    />
+      <Preview
+        mode={mode}
+        note={selectedNote}
+        title={title}
+        content={content}
+        handleCancel={handleCancel}
+        handleEdit={handleEdit}
+        handleDelete={handleDelete}
+        handleRestore={handleRestore}
+      />
 
-    <Edit
-      mode={mode}
-      title={title}
-      setTitle={setTitle}
-      content={content}
-      setContent={setContent}
-      handleSave={handleSave}
-      handleCancel={handleCancel}
-      handleDelete={handleDelete}
-      selectedId={selectedId}
-    />
-  </div>
-)
+      <Edit
+        mode={mode}
+        title={title}
+        setTitle={setTitle}
+        content={content}
+        setContent={setContent}
+        handleSave={handleSave}
+        handleCancel={handleCancel}
+        handleDelete={handleDelete}
+        selectedId={selectedId}
+      />
+    </div>
+  )
 }
 
 export default App
