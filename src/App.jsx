@@ -134,11 +134,19 @@ function App() {
 
   const handlePreview = (id, title, content) => {
     if (selectedId === id) {
-      if (confirm("are you sure you want to leave?") === false) return
+
+      if (
+        mode === "edit" &&
+        !confirm("Are you sure you want to leave?")
+      ) {
+        return
+      }
+
       setSelectedId(null)
       setTitle("")
       setContent("")
       setMode("none")
+
       return
     }
 
@@ -271,7 +279,7 @@ function App() {
   }, [])
 
   const handleSection = (newSection) => {
-    if(mode === "edit" && !confirm("are you sure you want to leave")) return;
+    if (mode === "edit" && !confirm("are you sure you want to leave")) return;
 
     setSection(newSection)
     setSearch("")
