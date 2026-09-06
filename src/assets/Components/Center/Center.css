@@ -10,13 +10,21 @@
     width: 100%;
     display: flex;
     align-items: center;
-    padding: 18px 0px;
+    padding: 8px;
+    margin: 8px;
+    border-radius: 100px 0px 0px 100px;
     gap: 16px;
+    background-color: var(--surface-color);
 }
 
 .search input {
     background: none;
     color: var(--text-color);
+    width: 100%;
+}
+
+.search svg {
+    cursor: pointer;
 }
 
 .notes {
@@ -45,6 +53,7 @@
     gap: 16px;
     transition: all 0.2s ease-out;
     position: relative;
+    cursor: pointer;
 }
 
 .note.selected {
@@ -105,10 +114,15 @@
     position: absolute;
     top: 16px;
     right: 16px;
-    backdrop-filter: blur(10px);
-    background-color: #ffffff20;
     padding: 4px;
     border-radius: 100px;
+    transition: backdrop-filter 0.2s ease,
+                background-color 0.2s ease;
+}
+
+.more:hover {
+    backdrop-filter: blur(10px);
+    background-color: #ffffff20;
 }
 
 .more-window {
@@ -129,6 +143,12 @@
 .more-window li {
     padding: 8px;
     list-style-type: none;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.more-window li:hover {
+    background-color: var(--muted-border);
 }
 
 .more-window.open {
@@ -149,7 +169,9 @@
     }
 
     .search {
-        padding: 18px;
+        padding: 16px;
+        border-radius: 100px;
+        margin: 8px;
     }
 
     .notes {
