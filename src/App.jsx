@@ -62,6 +62,7 @@ function App() {
 
       if (
         e.target.closest(".nav") ||
+        e.target.closest(".create-note") ||
         e.target.closest(".preview") ||
         e.target.closest(".Edit") ||
         e.target.closest(".note")
