@@ -148,6 +148,7 @@ function App() {
   }
 
   const handleCancel = () => {
+    if (mode === "edit" && !confirm("are you sure you want to leave?")) return
     setSelectedId(null)
     setTitle("")
     setContent("")
