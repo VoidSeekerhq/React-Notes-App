@@ -1,0 +1,46 @@
+.app.light {
+    --bg: #ffffff;
+    --primary-color: #fbb956;
+    --highlight-color: #5887fb;
+    --surface-color: #f6f8fa;
+    --text-color: #000000;
+    --muted-text-color: #9b9d9e;
+    --danger-color: #FF0E0E;
+    --muted-border: #d6d5d5;
+}
+
+.app.dark {
+    --bg: #17191d;
+    --primary-color: #fbb956;
+    --highlight-color: #6d95ff;
+    --surface-color: #24272d;
+    --text-color: #f2f4f8;
+    --muted-text-color: #8c93a0;
+    --danger-color: #ff5a5a;
+    --muted-border: #474747;
+}
+
+.app {
+    background-color: var(--bg);
+    color: var(--text-color);
+    width: 100dvw;
+    height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.delete, .Delete {
+    color: var(--danger-color);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+@media screen and (max-width: 425px) {
+    .app {
+        flex-direction: column;
+    }
+}

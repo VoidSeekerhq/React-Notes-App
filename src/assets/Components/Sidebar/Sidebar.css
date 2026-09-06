@@ -1,0 +1,128 @@
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-content: space-between;
+    height: 100dvh;
+    width: 300px;
+    padding: 16px;
+}
+
+.logo h1 {
+    font-size: 24px;
+    letter-spacing: 2px;
+}
+
+.logo {
+    margin-bottom: 16px;
+}
+
+.nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 32px 0px;
+    border-bottom: 1px solid var(--muted-border);
+    gap: 4px;
+}
+
+.nav li {
+    list-style-type: none;
+    width: 100%;
+    padding: 8px;
+    color: #737373;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.nav li span {
+    width: 100%;
+}
+
+.nav li.selected {
+    color: var(--highlight-color);
+}
+
+.create-note {
+    margin-top: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.create-note span {
+    font-size: 16px;
+    font-weight: 500;
+    color: #ffffff;
+}
+
+.theme {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    background: transparent;
+    border-radius: 100px;
+    border: 1px solid var(--muted-border);
+    transition: border 0.2s ease;
+}
+
+@media screen and (max-width: 425px) {
+    .sidebar {
+        /* position: fixed; */
+        top: 0;
+        flex-direction: row;
+        height: auto;
+        width: 100dvw;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .theme {
+        position: static;
+    }
+
+    .logo {
+        margin: 0;
+    }
+
+    .create-note {
+        margin: 0;
+    }
+
+    .create-note span {
+        display: none;
+    }
+    
+    .nav {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        z-index: 10;
+        background-color: var(--bg);
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-evenly;
+        margin: 0;
+        padding: 8px 0px;
+        gap: 0;
+    }
+
+    .nav span {
+        width: auto;
+        text-align: center;
+    }
+
+    .nav li {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+    }
+}
