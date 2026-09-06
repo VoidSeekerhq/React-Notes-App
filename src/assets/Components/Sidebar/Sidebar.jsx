@@ -3,7 +3,7 @@ import './Sidebar.css'
 
 import React from 'react'
 
-const Sidebar = ({ handleAdd, section, setSection, theme, handleTheme }) => {
+const Sidebar = ({ handleAdd, handleSection, section, setSection, theme, handleTheme }) => {
     return (
         <div className="sidebar">
             <button className="theme" onClick={handleTheme}>
@@ -20,7 +20,7 @@ const Sidebar = ({ handleAdd, section, setSection, theme, handleTheme }) => {
             <ul className="nav">
                 <li
                     className={section === "all" ? "selected" : ""}
-                    onClick={() => { setSection("all") }}
+                    onClick={() => { handleSection("all") }}
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M16 6h2a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-2" />
@@ -34,7 +34,7 @@ const Sidebar = ({ handleAdd, section, setSection, theme, handleTheme }) => {
 
                 <li
                     className={section === "trash" ? "selected" : ""}
-                    onClick={() => { setSection("trash") }}
+                    onClick={() => { handleSection("trash") }}
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M3 6h18" />

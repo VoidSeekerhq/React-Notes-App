@@ -56,6 +56,37 @@ function App() {
     )
   }, [notes])
 
+  useEffect(() => {
+
+    const handleOutsideClick = (e) => {
+
+      if (
+        e.target.closest(".nav") ||
+        e.target.closest(".preview") ||
+        e.target.closest(".Edit") ||
+        e.target.closest(".note")
+      ) return
+
+      if (
+        mode === "edit" &&
+        !confirm("Are you sure you want to leave?")
+      ) {
+        return
+      }
+
+      setSelectedId(null)
+      setTitle("")
+      setContent("")
+      setMode("none")
+    }
+
+    window.addEventListener("click", handleOutsideClick)
+
+    return () =>
+      window.removeEventListener("click", handleOutsideClick)
+
+  }, [mode])
+
 
   const handleAdd = () => {
     setTitle("")
@@ -101,6 +132,15 @@ function App() {
   }
 
   const handlePreview = (id, title, content) => {
+    if (selectedId === id) {
+      if (confirm("are you sure you want to leave?") === false) return
+      setSelectedId(null)
+      setTitle("")
+      setContent("")
+      setMode("none")
+      return
+    }
+
     setSelectedId(id)
     setTitle(title)
     setContent(content)
@@ -140,7 +180,7 @@ function App() {
     if (!selectedNote) return
 
     if (!selectedNote.deleted) {
-
+      if (!confirm("are you sure you want to delete this note?")) return
       setNotes(
         notes.map(item =>
           item.id === id
@@ -228,12 +268,26 @@ function App() {
 
   }, [])
 
+  const handleSection = (newSection) => {
+    if(mode === "edit" && !confirm("are you sure you want to leave")) return;
+
+    setSection(newSection)
+    setSearch("")
+
+
+    setSelectedId(null)
+    setTitle("")
+    setContent("")
+    setMode("none")
+  }
+
 
 
   return (
     <div className={`app ${theme}`}>
       <Sidebar
         handleAdd={handleAdd}
+        handleSection={handleSection}
         section={section}
         setSection={setSection}
         theme={theme}
